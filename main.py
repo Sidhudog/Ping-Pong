@@ -82,3 +82,64 @@ def paddle_b_down():
 win.listen()
 win.onkeypress(paddle_b_up,"Up")
 win.onkeypress(paddle_b_down,"Down")
+
+
+
+
+
+
+
+
+while True:
+    win.update()
+    # move the ball
+    
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+    
+    y=paddle_a.ycor()
+    if paddle_a.ycor() < 240:
+        if ball.ycor()>paddle_a.ycor():
+            y+=1
+    paddle_a.sety(y)
+
+
+    y=paddle_a.ycor()
+    if paddle_a.ycor() > -240:
+        if ball.ycor()<paddle_a.ycor():
+            y-=1
+    paddle_a.sety(y)
+
+    # vertical border checking 
+    if ball.ycor() > 290:
+        winsound.PlaySound("up.wav",winsound.SND_ASYNC)
+        ball.sety(290)
+        ball.dy *= -1
+    if ball.ycor() < -290:
+        winsound.PlaySound("up.wav",winsound.SND_ASYNC)
+        ball.sety(-290)
+        ball.dy *= -1
+    # horzontal border checking
+    if ball.xcor() > 390:
+        score_a+=1
+        winsound.PlaySound("endgame.wav",winsound.SND_ASYNC)
+        ball.goto(0,0)
+        pen.clear()
+        pen.write(f"player A: {score_a}   player B: {score_b}",align="center" , font=("Courier",24,"normal"))
+    if ball.xcor() < -390:
+        score_b+=1
+        winsound.PlaySound("endgame.wav",winsound.SND_ASYNC)
+        ball.goto(0,0)
+        pen.clear()
+        pen.write(f"player A: {score_a}   player B: {score_b}",align="center" , font=("Courier",24,"normal"))
+
+    # bounce 
+    if ball.xcor() > 340 and ball.xcor()<350 and  (paddle_b.ycor() + 60 > ball.ycor()) and (paddle_b.ycor() - 60 < ball.ycor()):
+        winsound.PlaySound("pad.wav",winsound.SND_ASYNC)
+        ball.setx(340)
+        ball.dx *= -1
+    
+    if ball.xcor() < -340 and ball.xcor()> -350 and  (paddle_a.ycor() + 40 > ball.ycor()) and (paddle_a.ycor() - 40 < ball.ycor()):
+        winsound.PlaySound("pad.wav",winsound.SND_ASYNC)
+        ball.setx(-340)
+        ball.dx *= -1
