@@ -58,3 +58,27 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
 pen.write(f"player A: {score_a}   player B: {score_b}",align="center" , font=("Courier",24,"normal"))
+
+
+
+
+
+
+
+
+def paddle_b_up():
+    y=paddle_b.ycor()
+    if paddle_b.ycor() < 240:
+        y+=50
+    paddle_b.sety(y)
+
+def paddle_b_down():
+    y=paddle_b.ycor()
+    if paddle_b.ycor() > -240:
+        y-=50
+    paddle_b.sety(y)
+
+#Keyboard vinding 
+win.listen()
+win.onkeypress(paddle_b_up,"Up")
+win.onkeypress(paddle_b_down,"Down")
