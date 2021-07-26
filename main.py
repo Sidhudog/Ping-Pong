@@ -34,3 +34,27 @@ paddle_b.shapesize(stretch_wid=5,stretch_len=1)
 paddle_b.color("white")
 paddle_b.penup()
 paddle_b.goto(350,0)
+
+
+
+
+
+
+ball=turtle.Turtle()
+ball.speed(0)
+ball.shape("circle")
+ball.color("dark red")
+ball.penup()
+ball.goto(0,0)
+ball.dx=0.5
+ball.dy=0.5
+
+
+# pen
+pen=turtle.Turtle()
+pen.speed(0)
+pen.color("purple")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write(f"player A: {score_a}   player B: {score_b}",align="center" , font=("Courier",24,"normal"))
